@@ -1,0 +1,217 @@
+/* ─────────────────────────────────────────────────────────────
+   Canopy — minimalist landing over one continuous living network
+   ───────────────────────────────────────────────────────────── */
+
+:root{
+  --bg:#FAF6EF;
+  --ink:#22332D;
+  --body:#5C6B64;
+  --muted:#8B9791;
+  --line:#E7E1D4;
+  --card:rgba(255,255,255,.55);
+  --emerald:#10B981;
+  --emerald-soft:#34D399;
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--body);
+  font:17px/1.65 var(--sans);
+  position:relative;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:rgba(16,185,129,.18)}
+
+/* ── Network layers sit behind everything, never catch pointers ── */
+.net-layer{
+  position:absolute;top:0;left:0;right:0;
+  z-index:0;pointer-events:none;overflow:hidden;
+}
+.net-layer svg{display:block}
+#netCanvas{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+}
+main,.site-footer{position:relative;z-index:2}
+.nav{z-index:20}
+
+@media (max-width:760px){
+  .net-layer{opacity:.7}
+}
+
+/* ── SVG stroke styles, one per hierarchy level ── */
+#netSvg path{
+  fill:none;stroke-linecap:round;stroke-linejoin:round;
+}
+#netSvg .lv-trunk{stroke:#8FA79B;stroke-opacity:.5;stroke-width:2.6}
+#netSvg .lv-p1   {stroke:#9AACA1;stroke-opacity:.42;stroke-width:1.6}
+#netSvg .lv-p2   {stroke:#A6B5AB;stroke-opacity:.32;stroke-width:1.05}
+#netSvg .lv-p3   {stroke:#B2BFB6;stroke-opacity:.24;stroke-width:.65}
+#netSvg .lv-ret  {stroke:#5FAE8F;stroke-opacity:.42;stroke-width:1.15;stroke-dasharray:1 7}
+#netSvg path{transition:stroke-dashoffset 1100ms cubic-bezier(.3,.7,.2,1)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  #netSvg path{
+    stroke-dasharray:none!important;stroke-dashoffset:0!important;
+    transition:none!important;
+  }
+}
+
+/* ── Sticky navigation ── */
+.nav{
+  position:sticky;top:0;
+  display:flex;align-items:center;gap:clamp(16px,4vw,44px);
+  padding:14px clamp(20px,5vw,56px);
+  background:rgba(250,246,239,.78);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(231,225,212,.6);
+}
+.brand{
+  display:inline-flex;align-items:center;gap:9px;
+  font:700 14px/1 var(--sans);letter-spacing:.22em;color:var(--ink);
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:clamp(12px,2.5vw,28px);margin-left:auto}
+.nav-links a{
+  color:var(--body);text-decoration:none;font-size:14.5px;
+  transition:color .15s;
+}
+.nav-links a:hover{color:var(--emerald)}
+
+/* ── Buttons ── */
+.btn{
+  display:inline-block;
+  padding:13px 26px;border-radius:999px;
+  font:600 15px/1 var(--sans);text-decoration:none;
+  transition:transform .15s ease,box-shadow .15s ease,background .15s;
+}
+.btn-ink{background:var(--ink);color:#F6F1E7}
+.btn-ink:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(34,51,45,.18)}
+.btn-ghost{
+  color:var(--ink);border:1px solid rgba(34,51,45,.28);
+  background:transparent;
+}
+.btn-ghost:hover{border-color:var(--emerald);color:var(--emerald)}
+.btn-sm{padding:9px 18px;font-size:13.5px}
+
+/* ── Section scaffolding: generous clearings in the canopy ── */
+.region{
+  max-width:1040px;margin:0 auto;
+  padding:clamp(120px,17vh,210px) clamp(22px,6vw,56px);
+}
+.hero{
+  padding-top:clamp(160px,24vh,280px);
+  padding-bottom:clamp(120px,18vh,220px);
+  text-align:center;
+}
+.eyebrow{
+  font:600 11.5px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;
+  color:var(--emerald);margin:0 0 22px;
+}
+h1{
+  font:400 clamp(44px,6.4vw,84px)/1.06 var(--serif);
+  color:var(--ink);letter-spacing:-.015em;
+  margin:0 0 26px;
+}
+h2{
+  font:400 clamp(30px,3.6vw,46px)/1.15 var(--serif);
+  color:var(--ink);letter-spacing:-.01em;
+  margin:0 0 20px;
+}
+.lede{
+  max-width:560px;font-size:18px;margin:0 0 36px;
+}
+.hero .lede{margin:0 auto 40px}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-stats{
+  margin:56px 0 0;font-size:14px;letter-spacing:.04em;color:var(--muted);
+}
+.hero-stats strong{color:var(--ink);font-weight:600}
+.hero-stats span{margin:0 12px;color:var(--line)}
+
+/* ── Cards: pale clearings ── */
+.cards{
+  display:grid;gap:18px;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  margin-top:44px;
+}
+.cards-4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.cards-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:26px 24px 22px;
+}
+.card h3{
+  font:600 16.5px/1.35 var(--sans);color:var(--ink);
+  margin:0 0 10px;
+}
+.card p{font-size:15px;line-height:1.6;margin:0;color:var(--body)}
+.step-n{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(16,185,129,.1);color:var(--emerald);
+  font:600 13px/1 var(--sans);margin-bottom:14px;
+}
+
+/* ── Stats ── */
+.stats{
+  display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  margin-top:52px;
+}
+.stat{
+  text-align:left;padding:18px 22px;
+}
+.stat-n{
+  display:block;
+  font:400 clamp(34px,4vw,52px)/1.1 var(--serif);color:var(--ink);
+}
+.stat-l{
+  display:block;margin-top:6px;
+  font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+}
+
+/* ── Quote ── */
+.quote{
+  margin:56px 0 0;max-width:640px;
+  border-left:2px solid rgba(16,185,129,.5);
+  padding:6px 0 6px 26px;
+}
+blockquote{
+  margin:0 0 14px;
+  font:italic 400 clamp(19px,2.2vw,24px)/1.5 var(--serif);color:var(--ink);
+}
+figcaption{font-size:13.5px;letter-spacing:.05em;color:var(--muted)}
+
+/* ── Footer ── */
+.site-footer{
+  max-width:1040px;margin:0 auto;
+  padding:clamp(120px,16vh,200px) clamp(22px,6vw,56px) 90px;
+}
+.footer-title{margin-bottom:18px}
+.footer-grid{
+  display:grid;gap:28px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,3fr));
+  margin-top:60px;max-width:560px;
+}
+.footer-grid h4{
+  font:600 11.5px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 14px;
+}
+.footer-grid a{
+  display:block;color:var(--body);text-decoration:none;
+  font-size:14.5px;margin-bottom:9px;
+}
+.footer-grid a:hover{color:var(--emerald)}
+.footer-note{
+  margin-top:70px;padding-top:26px;
+  border-top:1px solid var(--line);
+  font-size:13px;color:var(--muted);
+}

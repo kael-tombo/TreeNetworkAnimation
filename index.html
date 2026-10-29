@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canopy — one living network</title>
+<meta name="description" content="Canopy carries events, streams and decisions through one continuous living network — from first input to final destination, and back.">
+<meta name="theme-color" content="#FAF6EF">
+<link rel="preconnect" href="fonts.googleapis.com">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ══ Shared network layer: one SVG behind the whole document ══ -->
+<div class="net-layer" id="netLayer" aria-hidden="true">
+  <svg id="netSvg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"></svg>
+</div>
+<!-- ══ Shared particle layer: one fixed canvas, projected from world coords ══ -->
+<canvas id="netCanvas" aria-hidden="true"></canvas>
+
+<header class="nav" data-region="nav">
+  <a class="brand" href="#top" aria-label="Canopy home">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 18V8" stroke="#10B981" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M10 10C10 10 5.5 9 3.5 5.5" stroke="#10B981" stroke-width="1.3" stroke-linecap="round"/>
+      <path d="M10 12C10 12 14.5 11 16.5 7.5" stroke="#10B981" stroke-width="1.3" stroke-linecap="round"/>
+      <circle cx="3.5" cy="5.5" r="1.4" fill="#10B981"/>
+      <circle cx="16.5" cy="7.5" r="1.4" fill="#10B981"/>
+      <circle cx="10" cy="8" r="1.4" fill="#10B981"/>
+    </svg>
+    CANOPY
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#inputs">Inputs</a>
+    <a href="#routing">Routing</a>
+    <a href="#scale">Scale</a>
+    <a href="#access">Access</a>
+  </nav>
+  <a class="btn btn-ink btn-sm" href="#access">Get access</a>
+</header>
+
+<main id="top">
+
+  <!-- ── Region 1 · HERO — the network emerges ── -->
+  <section class="region hero" data-region="hero">
+    <p class="eyebrow">Canopy · living infrastructure</p>
+    <h1>Every signal,<br>one living route.</h1>
+    <p class="lede">Canopy carries events, streams and decisions through a single
+    vascular network — from the first input to the final destination, and all
+    the way back home.</p>
+    <div class="hero-cta">
+      <a class="btn btn-ink" href="#access">Start routing</a>
+      <a class="btn btn-ghost" href="#inputs">See how it flows →</a>
+    </div>
+    <p class="hero-stats"><strong>12M</strong> journeys / day
+      <span>·</span> <strong>38</strong> endpoints
+      <span>·</span> <strong>1</strong> network</p>
+  </section>
+
+  <!-- ── Region 2 · INPUTS — information enters ── -->
+  <section class="region" id="inputs" data-region="inputs">
+    <p class="eyebrow">01 — Inputs</p>
+    <h2>Where information enters</h2>
+    <p class="lede">Signals arrive from every direction and merge into the same
+    trunk. Nothing enters the network twice; nothing is left outside it.</p>
+    <div class="cards cards-4">
+      <article class="card"><h3>Events &amp; webhooks</h3><p>Discrete moments — a signup, a payment, an alert — enter at their own junctions.</p></article>
+      <article class="card"><h3>Continuous streams</h3><p>Telemetry and logs flow in as a steady current rather than single drops.</p></article>
+      <article class="card"><h3>Human approvals</h3><p>People are part of the network. A decision waits politely at a junction until you act.</p></article>
+      <article class="card"><h3>Legacy systems</h3><p>Old roots still draw water. RFID-era queues and mainframes join the same body.</p></article>
+    </div>
+  </section>
+
+  <!-- ── Region 3 · INTELLIGENCE — routing & branching ── -->
+  <section class="region" id="routing" data-region="intelligence">
+    <p class="eyebrow">02 — Routing</p>
+    <h2>Routes that decide themselves</h2>
+    <p class="lede">Junctions weigh load, priority and health, then choose a
+    branch. There is no single center everything must pass through — only
+    neighbourhoods that know where to send things next.</p>
+    <div class="cards cards-3">
+      <article class="card"><h3>Junction rules</h3><p>Simple, auditable decisions at every fork: route, wait, fork again, or return.</p></article>
+      <article class="card"><h3>Load-aware paths</h3><p>Busy branches shed flow to quieter siblings without dropping a particle.</p></article>
+      <article class="card"><h3>Quiet rerouting</h3><p>When a pathway degrades, journeys bend around it — you notice the logs, not the outage.</p></article>
+    </div>
+  </section>
+
+  <!-- ── Region 4 · DISTRIBUTION — the network expands ── -->
+  <section class="region" id="scale" data-region="distribution">
+    <p class="eyebrow">03 — Distribution</p>
+    <h2>One branch, many destinations</h2>
+    <p class="lede">Past the routing region the canopy widens. Major branches
+    divide again and again until every destination has its own endings.</p>
+    <div class="stats">
+      <div class="stat"><span class="stat-n">38</span><span class="stat-l">live destinations</span></div>
+      <div class="stat"><span class="stat-n">6</span><span class="stat-l">routing regions</span></div>
+      <div class="stat"><span class="stat-n">99.98%</span><span class="stat-l">journeys delivered</span></div>
+      <div class="stat"><span class="stat-n">0</span><span class="stat-l">shared bottlenecks</span></div>
+    </div>
+  </section>
+
+  <!-- ── Region 5 · EXECUTION — pathways reach destinations ── -->
+  <section class="region" data-region="execution">
+    <p class="eyebrow">04 — Execution</p>
+    <h2>Where journeys land</h2>
+    <p class="lede">Endings are ordinary here. A pathway finishes its work,
+    glows once, and the network moves on.</p>
+    <div class="cards steps">
+      <article class="card"><span class="step-n">1</span><h3>Delivery lands</h3><p>Records, messages and calls arrive at their destination systems.</p></article>
+      <article class="card"><span class="step-n">2</span><h3>Receipts confirm</h3><p>Every arrival carries a receipt, so nothing lands twice or half-way.</p></article>
+      <article class="card"><span class="step-n">3</span><h3>The trail is kept</h3><p>Full journey history remains queryable, branch by branch.</p></article>
+    </div>
+  </section>
+
+  <!-- ── Region 6 · FEEDBACK — information returns ── -->
+  <section class="region" data-region="feedback">
+    <p class="eyebrow">05 — Feedback</p>
+    <h2>Results travel home</h2>
+    <p class="lede">Dashed return branches carry outcomes back upstream to the
+    junctions that sent them — so the network learns its own shape.</p>
+    <figure class="quote">
+      <blockquote>“We stopped watching dashboards. The network tells us where
+      something landed — and where it came back.”</blockquote>
+      <figcaption>Head of Platform Operations · Northwind</figcaption>
+    </figure>
+  </section>
+</main>
+
+  <!-- ── Region 7 · FOOTER — the network continues ── -->
+  <footer class="site-footer" id="access" data-region="footer">
+    <h2 class="footer-title">The network keeps growing.</h2>
+    <p class="lede">Request access and we’ll graft you in. The lines on this
+    page are one continuous network — scroll back up and they are still moving.</p>
+    <div class="footer-grid">
+      <div><h4>Product</h4><a href="#inputs">Inputs</a><a href="#routing">Routing</a><a href="#scale">Scale</a></div>
+      <div><h4>Company</h4><a href="#top">About</a><a href="#top">Journal</a><a href="#top">Careers</a></div>
+      <div><h4>Trust</h4><a href="#top">Status</a><a href="#top">Security</a><a href="#top">Privacy</a></div>
+    </div>
+    <p class="footer-note">© 2026 Canopy Systems — one network, continuously alive.</p>
+  </footer>
+
+<script src="network.js"></script>
+</body>
+</html>
